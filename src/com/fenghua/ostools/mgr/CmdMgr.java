@@ -16,7 +16,8 @@ public class CmdMgr {
 	/**
 	 * cmdmap
 	 */
-	private Map<CmdConfig, CmdRunner> cmdMaps = new HashMap<CmdConfig, CmdRunner>();
+	private Map<String, CmdRunner> cmdMaps = new HashMap<String, CmdRunner>();
+	private Map<String, CmdConfig> configMap = new HashMap<String, CmdConfig>();
 
 	/**
 	 * 
@@ -24,7 +25,18 @@ public class CmdMgr {
 	 * @param runner
 	 */
 	public void regCmd(CmdConfig config, CmdRunner runner) {
-		cmdMaps.put(config, runner);
+		cmdMaps.put(config.getCmd(), runner);
+		configMap.put(config.getCmd(), config);
+	}
+
+	/**
+	 * ªÒ»°runner
+	 * 
+	 * @param cmd
+	 * @return
+	 */
+	public CmdRunner getRunner(String cmd) {
+		return cmdMaps.get(cmd);
 	}
 
 }
